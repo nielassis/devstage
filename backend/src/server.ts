@@ -17,6 +17,8 @@ import { getSubscriberRankingPositionRoute } from "./routes/get-subscriber-ranki
 import { getRankingRoute } from "./routes/get-ranking-route";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
+const port = process.env.PORT || 3333;
+const host = process.env.HOST;
 
 app.setSerializerCompiler(serializerCompiler);
 app.setValidatorCompiler(validatorCompiler);
@@ -44,7 +46,7 @@ app.register(getSubscriberInvitesCountsRoute);
 app.register(getSubscriberRankingPositionRoute);
 app.register(getRankingRoute);
 
-app.listen({ port: env.PORT || 5555 }).then(() => {
-  console.log(`HTTP server running on http://localhost:${env.PORT}`);
-  console.log(`Swagger Docs running on http://localhost:${env.PORT}/docs`);
+app.listen({ port: Number(port) }).then(() => {
+  console.log(`HTTP server running on ${host}:${port}`);
+  console.log(`Swagger Docs running on ${host}:${port}/docs`);
 });
