@@ -24,6 +24,6 @@
   "scripts": {
     "dev": "tsx watch --env-file=.env src/server.ts",
     "build": "tsup-node",
-    "start": "node dist/server.js"
+    "start": "node --env-file .env dist/server.mjs"
   }
 }
