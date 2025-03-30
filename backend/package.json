@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@fastify/cors": "^11.0.0",
     "@fastify/swagger": "^9.4.2",
