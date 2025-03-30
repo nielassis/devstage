@@ -46,7 +46,7 @@ app.register(getSubscriberInvitesCountsRoute);
 app.register(getSubscriberRankingPositionRoute);
 app.register(getRankingRoute);
 
-app.listen({ port: Number(port) }).then(() => {
+app.listen({ port: Number(port), host: "0.0.0.0" }).then(() => {
   console.log(`HTTP server running on ${host}:${port}`);
   console.log(`Swagger Docs running on ${host}:${port}/docs`);
 });
