@@ -1,14 +1,19 @@
-import { InviteLinkInput } from '@/components/pages/invited/invite-link'
-import { Ranking } from '@/components/pages/invited/ranking'
-import Stats from '@/components/pages/invited/stats'
-import { IconButton } from '@/components/ui/icon-button'
-import { InputField, InputIcon, InputRoot } from '@/components/ui/input'
-import { Copy, Link } from 'lucide-react'
-import Image from 'next/image'
-import logo from '../../assets/logo.svg'
+import { InviteLinkInput } from "@/app/invite/[subscriberId]/invite-link";
+import { Ranking } from "@/app/invite/[subscriberId]/ranking";
+import Stats from "@/app/invite/[subscriberId]/stats";
+import Image from "next/image";
+import logo from "../../../assets/logo.svg";
 
-export default function InvitePage() {
-  const invitedLink: string = 'https://devstage.com.br'
+interface invitePageProps {
+  params: {
+    subscriberId: Promise<{ subscriberId: string }>;
+  };
+}
+
+export default async function InvitePage(props: invitePageProps) {
+
+  const { subscriberId } = await props.params;
+  const invitedLink: string = `http://localhost:5555/invites/${subscriberId}`;
   return (
     <div className="min-h-dvh flex items-center justify-between gap-16 flex-col md:flex-row">
       <div className="flex flex-col gap-10 w-full max-w-[550px]">
@@ -37,11 +42,11 @@ export default function InvitePage() {
 
           <InviteLinkInput inviteLink={invitedLink} />
 
-          <Stats />
+          <Stats subscriberId={subscriberId} />
         </div>
       </div>
 
       <Ranking />
     </div>
-  )
+  );
 }
